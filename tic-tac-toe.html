@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">  
+.button {
+	background-color: black;
+    border: none;
+    color: white;
+    padding: 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<title>Tic-Tac-Toe</title>
+<meta http-equiv="Content-Type" content="text/html; charset=Big5" />
+
+</head>
+
+<body>
+		<style type="text/css"> 
+#b1{
+		width: 100px;height: 100px;
+}
+#b2{
+		width: 100px;height: 100px;
+}
+#b3{
+		width: 100px;height: 100px;
+}
+#b4{
+		width: 100px;height: 100px;
+}
+#b5{
+		width: 100px;height: 100px;
+}
+#b6{
+		width: 100px;height: 100px;
+}
+#b7{
+		width: 100px;height: 100px;
+}
+#b8{
+		width: 100px;height: 100px;
+}
+#b9{
+		width: 100px;height: 100px;
+}
+#new_game{
+		width: 100px;height: 50px;
+}
+		</style>
+
+<center>
+
+<br><br><br><br><br><br><br>
+<h2 class="text-primary" id = "player">Player 1(O)</h2>
+<br>
+<input type="submit" onmousedown="return changeText('b1');" value="  " id="b1" class="btn btn-outline-success"/>
+<input type="submit" onmousedown="return changeText('b2');" value="  " id="b2" class="btn btn-outline-success"/>
+<input type="submit" onmousedown="return changeText('b3');" value="  " id="b3" class="btn btn-outline-success"/>
+<br>
+<input type="submit" onmousedown="return changeText('b4');" value="  " id="b4" class="btn btn-outline-success"/>
+<input type="submit" onmousedown="return changeText('b5');" value="  " id="b5" class="btn btn-outline-success"/>
+<input type="submit" onmousedown="return changeText('b6');" value="  " id="b6" class="btn btn-outline-success"/>
+<br>
+<input type="submit" onmousedown="return changeText('b7');" value="  " id="b7" class="btn btn-outline-success"/>
+<input type="submit" onmousedown="return changeText('b8');" value="  " id="b8" class="btn btn-outline-success"/>
+<input type="submit" onmousedown="return changeText('b9');" value="  " id="b9" class="btn btn-outline-success"/>
+<br>
+<br>
+<input type="submit" onclick="return new_game('new_game');" value="New Game" id="new_game" class="btn btn-outline-info"/>
+
+</center>
+
+<script>
+var times = 0;
+var check = false;
+function changeText(button){
+	var submit = document.getElementById(button);
+	var changevalue = document.getElementById(button);
+	if(submit.value == "  "){
+		if(times%2 == 0){
+			times++;
+			document.getElementById('player').innerHTML = "Player 1(O)";
+        	submit.value = "O";
+			return;
+		}
+		else{
+			times++;
+        	document.getElementById('player').innerHTML = "Player 2(X)";
+        	submit.value = "X";
+			return;
+		}
+	}
+	else
+		return;
+};
+
+
+document.getElementById("b1").onmouseup = function() {checkWin()};
+document.getElementById("b2").onmouseup = function() {checkWin()};
+document.getElementById("b3").onmouseup = function() {checkWin()};
+document.getElementById("b4").onmouseup = function() {checkWin()};
+document.getElementById("b5").onmouseup = function() {checkWin()};
+document.getElementById("b6").onmouseup = function() {checkWin()};
+document.getElementById("b7").onmouseup = function() {checkWin()};
+document.getElementById("b8").onmouseup = function() {checkWin()};
+document.getElementById("b9").onmouseup = function() {checkWin()};
+
+function checkWin(button){
+		var b1 = document.getElementById('b1').value;
+		var b2 = document.getElementById('b2').value;
+		var b3 = document.getElementById('b3').value;
+		var b4 = document.getElementById('b4').value;
+		var b5 = document.getElementById('b5').value;
+		var b6 = document.getElementById('b6').value;
+		var b7 = document.getElementById('b7').value;
+		var b8 = document.getElementById('b8').value;
+		var b9 = document.getElementById('b9').value;
+
+		if((b1=="O" || b1=="X") && b1 == b2 && b2 == b3)
+		{
+				check = true;
+		}
+		if((b4=="O" || b4=="X") && b4 == b5 && b5 == b6)
+		{
+				check = true;
+		}
+		if((b7=="O" || b7=="X") && b7 == b8 && b8 == b9)
+		{
+				check = true;
+		}
+		if((b1=="O" || b1=="X") && b1 == b4 && b4 == b7)
+		{
+				check = true;
+		}
+		if((b2=="O" || b2=="X") && b2 == b5 && b5 == b8)
+		{
+				check = true;
+		}
+		if((b3=="O" || b3=="X") && b3 == b6 && b6 == b9)
+		{
+				check = true;
+		}
+		if((b1=="O" || b1=="X") && b1 == b5 && b5 == b9)
+		{
+				check = true;
+		}
+		if((b3=="O" || b3=="X") && b3 == b5 && b5 == b7)
+		{
+				check = true;
+		}
+		
+
+		if(check == true)
+		{
+				if(times%2==1)
+						alert("Player 1(O) is Winner!");
+				else
+						alert("Player 2(X) is Winner!");
+				new_game("new_game");
+		}
+		if(times==9)
+		{
+				alert("Draw!");
+				new_game("new_game");
+		}
+}
+
+
+
+function new_game(button){
+	document.getElementById('b1').value="  ";
+	document.getElementById('b2').value="  ";
+	document.getElementById('b3').value="  ";
+	document.getElementById('b4').value="  ";
+	document.getElementById('b5').value="  ";
+	document.getElementById('b6').value="  ";
+	document.getElementById('b7').value="  ";
+	document.getElementById('b8').value="  ";
+	document.getElementById('b9').value="  ";
+	times = 0;
+	check = false;
+	document.getElementById('player').innerHTML="Player 1(O)";
+	return false;
+}
+</script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
